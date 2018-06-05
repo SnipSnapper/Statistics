@@ -24,6 +24,5 @@
   <br><br>
   <input type="submit" value="Submit">
 </form> 
-<a href="http://statistics.test/statistics">show statistics</a>
 </body>
 </html>

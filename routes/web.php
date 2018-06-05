@@ -17,7 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('sent', 'HomeController@SentData2'); 
-
-});
+Route::post('sent', 'HomeController@SentData'); 
 

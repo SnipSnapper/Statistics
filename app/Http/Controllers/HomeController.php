@@ -18,23 +18,6 @@ class HomeController extends Controller
 		$this->reservations = json_decode($this->response->getBody());
 	}*/
 
-    function SentData2(Request $request){
-
-    	try {
-            $client = new Client();
-            $result = $client->request('POST', env('API_ROUTE') . 'test', [
-                'form_params' => [
-                    'firstname' => $request->input('firstname'),
-                    'lastname' => $request->input('lastname'),
-                ]
-            ]);
-        } catch (\GuzzleHttp\Exception\BadResponseException $e)
-        {
-            dd($e->getResponse()->getBody()->getContents());
-        }
-        return json_decode($result->getBody());
-    }
-
     function SentData(Request $request){
 		
 		try {
