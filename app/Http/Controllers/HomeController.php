@@ -18,7 +18,7 @@ class HomeController extends Controller
 		$this->reservations = json_decode($this->response->getBody());
 	}*/
 
-    function SentData(Request $request){
+    function SentData2(Request $request){
 
     	try {
             $client = new Client();
@@ -35,7 +35,7 @@ class HomeController extends Controller
         return json_decode($result->getBody());
     }
 
-    function SentData2(Request $request){
+    function SentData(Request $request){
 		
 		try {
             $client = new Client();
