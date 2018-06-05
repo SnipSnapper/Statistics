@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/statistics', function () {
-	$statistics = new GetStatistics();
-	$statistics->PrintTime();
-});
 Route::post('sent', 'HomeController@SentData2'); 
+
+});
 

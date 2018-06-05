@@ -33,3 +33,12 @@ class GetStatistics {
 		}
 	}
 }
+		echo "Begin time: ";
+		echo $begin_time = date("H:i:s",strtotime($begin_time));
+		echo " End time: ";
+		echo $end_time = date("H:i:s",strtotime($end_time));
+		echo "<br>";
+		}
+	}
+
+?>
