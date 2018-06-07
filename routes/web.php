@@ -19,6 +19,9 @@ Route::get('/', function () {
 });
 
 Route::post('sent', 'HomeController@SentData'); 
+<<<<<<< HEAD
 Route::get('sent', 'HomeController@create');
 
+=======
+>>>>>>> e189f6d54a359b851982b27e3e96a1f22b3d42fd
 
