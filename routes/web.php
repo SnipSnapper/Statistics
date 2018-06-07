@@ -14,10 +14,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    return view('Home');
 });
 
-Route::post('sent', 'HomeController@SentData2'); 
+Route::post('sent', 'HomeController@SentData'); 
+Route::get('sent', 'HomeController@create');
 
-});
 
