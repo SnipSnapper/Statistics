@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+require('vendor/autoload.php');
 
 class HomeController extends Controller
 {
@@ -27,6 +28,8 @@ class HomeController extends Controller
                     'IDValue' => $request->input('IDValue'),
                     'checkboxPeople' => $request->input('checkboxPeople'),
                     'amountOfPeople' => $request->input('amountOfPeople'),
+                    'date' => $request->input('date'),
+
                 ]
             ]);
         } catch (\GuzzleHttp\Exception\BadResponseException $e)
