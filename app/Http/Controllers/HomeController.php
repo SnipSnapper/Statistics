@@ -9,7 +9,6 @@ require('vendor/autoload.php');
 class HomeController extends Controller
 {
 
-<<<<<<< HEAD
 	function create()
     {
         $client = new Client();
@@ -18,7 +17,6 @@ class HomeController extends Controller
             'rooms' => json_decode($rooms->getBody()),
         ]);
     }
-=======
 	/*private $client;
 	private $response;
 	private $reservations;
@@ -28,7 +26,6 @@ class HomeController extends Controller
 		$this->response = $this->client->get(env('API_TEST') . 'calendar_items');
 		$this->reservations = json_decode($this->response->getBody());
 	}*/
->>>>>>> e189f6d54a359b851982b27e3e96a1f22b3d42fd
 
     function SentData(Request $request){
 		
