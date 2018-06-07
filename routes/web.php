@@ -18,10 +18,7 @@ Route::get('/', function () {
     return view('Home');
 });
 
-Route::post('sent', 'HomeController@SentData'); 
-<<<<<<< HEAD
-Route::get('sent', 'HomeController@create');
+Route::post('day', 'HomeController@SentData'); 
+Route::get('day', 'HomeController@create');
 
-=======
->>>>>>> e189f6d54a359b851982b27e3e96a1f22b3d42fd
 
