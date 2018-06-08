@@ -8,14 +8,6 @@ use GuzzleHttp\Client;
 class HomeController extends Controller
 {
 
-	function create()
-    {
-        $client = new Client();
-        $rooms = $client->get(env('API_ROUTE') . 'rooms');
-        return view('Statistics', [
-            'rooms' => json_decode($rooms->getBody()),
-        ]);
-    }
 	/*private $client;
 	private $response;
 	private $reservations;
@@ -36,8 +28,6 @@ class HomeController extends Controller
                     'IDValue' => $request->input('IDValue'),
                     'checkboxPeople' => $request->input('checkboxPeople'),
                     'amountOfPeople' => $request->input('amountOfPeople'),
-                    'date' => $request->input('date'),
-
                 ]
             ]);
         } catch (\GuzzleHttp\Exception\BadResponseException $e)

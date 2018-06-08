@@ -14,6 +14,11 @@
 */
 
 Route::get('/', function () {
+
     return view('Home');
 });
+
+Route::post('day', 'HomeController@SentData'); 
+Route::get('day', 'HomeController@create');
+
 
