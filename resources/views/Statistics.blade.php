@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form action="{{ url('/sent') }}" method="post" >
+<!--<form action="{{ url('/sent') }}" method="post" >
 	{{ csrf_field() }}
 
 
@@ -22,7 +22,17 @@
   <br>
   <input type="text" name="amountOfPeople" value="">
   <br><br>
+  <input type="submit" value="Submit">-->
+
+<form action="{{ url('/sent') }}" method="post" >
+  {{ csrf_field() }}
+
+  <select name="IDValue">
+  @foreach ($rooms as $room)
+        <option name="IDValue" value={{ $room->id }}>{{ $room->name }}</option>
+  @endforeach
+</select>
   <input type="submit" value="Submit">
-</form> 
 </body>
+</form> 
 </html>

@@ -8,6 +8,16 @@ use GuzzleHttp\Client;
 class HomeController extends Controller
 {
 
+        function create()
+    {
+        $client = new Client();
+        $rooms = $client->get(env('API_ROUTE') . 'rooms');
+        return view('/Statistics', [
+            'rooms' => json_decode($rooms->getBody()),
+        ]);
+    }
+
+
 	/*private $client;
 	private $response;
 	private $reservations;
