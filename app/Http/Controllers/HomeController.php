@@ -5,16 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
+
+
 class HomeController extends Controller
 {
+
+    function __construct(){
+
+        $rooms;
+    }
+
 
 	function create()
     {
         $client = new Client();
-        $rooms = $client->get(env('API_ROUTE') . 'rooms');
+        $this->rooms = $client->get(env('API_ROUTE') . 'rooms');
         return view('Statistics', [
-            'rooms' => json_decode($rooms->getBody()),
+            'rooms' => json_decode($this->rooms->getBody()),
         ]);
+
+
     }
 	/*private $client;
 	private $response;
@@ -44,6 +54,40 @@ class HomeController extends Controller
         {
             dd($e->getResponse()->getBody()->getContents());
         }
-        return json_decode($result->getBody());
+        $homecontroller = new HomeController;
+        $homecontroller->makeGraph($result, $request);
+
+        //return json_decode($result->getBody());
+
+        return view("graph");
+    }
+
+    function makeGraph($result, $request){
+        $client = new Client();
+        $this->rooms = $client->get(env('API_ROUTE') . 'rooms');
+        $room_name = "";
+
+        $rooms = json_decode($this->rooms->getBody());
+        foreach($rooms as $room)
+        {
+            if($room->id == $request->input('IDValue'))
+            {
+                $room_name = $room->name;
+            }
+        }
+
+        $usage = json_decode($result->getbody());
+
+        $reasons = \Lava::DataTable();
+
+        $reasons->addStringColumn('Reasons')
+                ->addNumberColumn('Percent')
+                ->addRow(['used', $usage])
+                ->addRow(['not used', 100 - $usage]);
+              
+            \Lava::DonutChart('IMDB', $reasons, [
+            'title' => 'percentage of usage of room ' . $room_name
+        ]);
+
     }
 }

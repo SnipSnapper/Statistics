@@ -20,5 +20,6 @@ Route::get('/', function () {
 
 Route::post('day', 'HomeController@SentData'); 
 Route::get('day', 'HomeController@create');
+Route::get('graph', 'VisitorController@index');
 
 

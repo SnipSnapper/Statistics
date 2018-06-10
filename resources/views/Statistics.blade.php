@@ -33,8 +33,6 @@
   <input type="submit" value="Submit">
 </form> 
 
-</body>
-
 <script>  
       $(document).ready(function(){  
            $.datepicker.setDefaults({  
