@@ -15,7 +15,7 @@
 
 Route::get('/', function () {
 
-    return view('Home');
+    return view('index');
 });
 
 Route::post('day', 'HomeController@SentData'); 

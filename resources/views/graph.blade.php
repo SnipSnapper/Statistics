@@ -5,6 +5,6 @@
 <body>
 <div id="chart-div"></div>
 
-    <?= Lava::render('DonutChart', 'IMDB', 'chart-div') ?>
+    <?= Lava::render('BarChart', 'IMDB', 'chart-div') ?>
 </body>
 </html>

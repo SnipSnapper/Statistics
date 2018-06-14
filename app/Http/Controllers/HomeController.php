@@ -20,21 +20,12 @@ class HomeController extends Controller
     {
         $client = new Client();
         $this->rooms = $client->get(env('API_ROUTE') . 'rooms');
-        return view('Statistics', [
+        return view('home', [
             'rooms' => json_decode($this->rooms->getBody()),
         ]);
 
 
     }
-	/*private $client;
-	private $response;
-	private $reservations;
-
-	function __construct(){
-		$this->client = new Client();
-		$this->response = $this->client->get(env('API_TEST') . 'calendar_items');
-		$this->reservations = json_decode($this->response->getBody());
-	}*/
 
     function SentData(Request $request){
 		
@@ -42,10 +33,7 @@ class HomeController extends Controller
             $client = new Client();
             $result = $client->request('POST', env('API_ROUTE') . 'test', [
                 'form_params' => [
-                    'checkboxID' => $request->input('checkboxID'),
                     'IDValue' => $request->input('IDValue'),
-                    'checkboxPeople' => $request->input('checkboxPeople'),
-                    'amountOfPeople' => $request->input('amountOfPeople'),
                     'date' => $request->input('date'),
 
                 ]
@@ -63,31 +51,32 @@ class HomeController extends Controller
     }
 
     function makeGraph($result, $request){
-        $client = new Client();
-        $this->rooms = $client->get(env('API_ROUTE') . 'rooms');
-        $room_name = "";
-
-        $rooms = json_decode($this->rooms->getBody());
-        foreach($rooms as $room)
-        {
-            if($room->id == $request->input('IDValue'))
-            {
-                $room_name = $room->name;
-            }
-        }
-
-        $usage = json_decode($result->getbody());
+        $room_names = $_POST['IDValue'];
+        $i = 0;
 
         $reasons = \Lava::DataTable();
 
         $reasons->addStringColumn('Reasons')
-                ->addNumberColumn('Percent')
-                ->addRow(['used', $usage])
-                ->addRow(['not used', 100 - $usage]);
+                ->addNumberColumn('Percent');
+
+        $usage = json_decode($result->getbody());
+        
+        foreach ($usage as $value) {
+            if (isset($value[0])) {
+                $reasons->addRow([$room_names[$i], $value[0]]);
+            }else{
+                $reasons->addRow([$room_names[$i], 0]);
+            }
+            
+            $i++;
+        }
               
-            \Lava::DonutChart('IMDB', $reasons, [
-            'title' => 'percentage of usage of room ' . $room_name
-        ]);
+            \Lava::BarChart('IMDB', $reasons, [
+                'hAxis'=> [
+                    'minValue' => '0',
+                    'maxValue'=> '100'
+                ]
+            ]);
 
     }
 }
